@@ -18,7 +18,8 @@ class quasispecies(nprops):
         self.normed_by_degree = normed_by_degree
 
         if strain_length is None:
-            self.strain_length = self.nprops.N + 1
+            # assume N = 2^L nodes with L being the strain length
+            self.strain_length = np.log(self.N) / np.log(2.)
         else:
             self.strain_length = strain_length
 
@@ -73,7 +74,7 @@ if __name__=="__main__":
     k = 10
     xi = 0.4
     
-    mu = 0.9
+    mu = 0.3
 
     N = B**L
     strain_length = np.log(N)/np.log(2.)
@@ -99,5 +100,4 @@ if __name__=="__main__":
 
     print phi,x,L
     
-
     pl.show()
