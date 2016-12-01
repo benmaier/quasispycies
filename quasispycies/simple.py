@@ -76,7 +76,10 @@ class quasispecies():
         """
 
         if sprs.issparse(G):
-            self.A = self._delete_zero_rows_and_cols(G)
+            if use_giant_component:
+                self.A = self._delete_zero_rows_and_cols(G)
+            else:
+                self.A = G
             self.N = self.A.shape[0]
             self.m = len(self.A.data) / 2
         else:
